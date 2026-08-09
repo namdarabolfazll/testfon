@@ -26,8 +26,6 @@ SECRET_KEY = 'django-insecure-j7jppi!j=1l%fa)5q&v-=xn%+_3s0j)k2*eq(-(3@12+)qp5m&
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'shop.apps.ShopConfig',
 ]
 
 MIDDLEWARE = [
@@ -68,8 +67,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'testfon.wsgi.application'
+STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 

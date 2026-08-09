@@ -1,6 +1,60 @@
+{% load static %}
 <section class="container-dara py-10 lg:py-16">
-  <div class="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-    <div class="order-2 lg:order-1"><p class="section-eyebrow">TABLEWARE FOR CALM HOMES</p><h1 class="mt-5 text-4xl font-extrabold leading-tight text-dara-primary sm:text-5xl lg:text-7xl">ظروفی برای میزهایی که داستان خانه را روایت می‌کنند.</h1><p class="mt-6 max-w-xl text-base leading-8 text-dara-secondary sm:text-lg">مجموعه‌ای انتخاب‌شده از ظروف سرامیکی، شیشه‌ای و اکسسوری‌های آشپزخانه با کیفیت ممتاز، فرم‌های آرام و رنگ‌های گرم.</p><div class="mt-8 flex flex-col gap-3 sm:flex-row"><a href="/shop/" class="btn-primary">مشاهده فروشگاه</a><a href="#categories" class="btn-secondary">کشف دسته‌بندی‌ها</a></div></div>
-    <div class="order-1 overflow-hidden rounded-[2.5rem] border border-dara-border bg-white p-3 shadow-sm lg:order-2"><div class="aspect-[4/5] rounded-[2rem] bg-[radial-gradient(circle_at_40%_20%,#f7eadb,transparent_35%),linear-gradient(145deg,#fff,#e9dfd2)] p-8"><div class="flex h-full flex-col justify-end rounded-[1.5rem] border border-white/70 bg-white/30 p-6 backdrop-blur-sm"><span class="text-sm font-bold text-dara-accent">New Ceramic Edit</span><span class="mt-2 text-3xl font-extrabold">کالکشن صبحانه آرام</span></div></div></div>
-  </div>
+    <div class="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+
+        <div class="order-2 lg:order-1">
+            <p class="section-eyebrow">
+                TABLEWARE FOR CALM HOMES
+            </p>
+
+            <h1 class="mt-5 text-4xl font-extrabold leading-tight text-dara-primary sm:text-5xl lg:text-7xl">
+                ظروفی برای میزهایی که داستان خانه را روایت می‌کنند.
+            </h1>
+
+            <p class="mt-6 max-w-xl text-base leading-8 text-dara-secondary sm:text-lg">
+                مجموعه‌ای انتخاب‌شده از ظروف سرامیکی، شیشه‌ای و اکسسوری‌های آشپزخانه با کیفیت ممتاز،
+                فرم‌های آرام و رنگ‌های گرم.
+            </p>
+
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href="/shop/" class="btn-primary">
+                    مشاهده فروشگاه
+                </a>
+
+                <a href="#categories" class="btn-secondary">
+                    کشف دسته‌بندی‌ها
+                </a>
+            </div>
+        </div>
+
+
+        <!-- Hero Image -->
+        <div class="order-1 overflow-hidden rounded-[2.5rem] border border-dara-border bg-white p-3 shadow-sm lg:order-2">
+
+            <div
+                class="aspect-[4/5] rounded-[2rem] bg-cover bg-center relative overflow-hidden"
+                style="background-image: url('{% static "img/a750cdc0-ccfa-4954-889c-bb9bda4215e4.jpeg" %}');"
+            >
+
+                <!-- Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+
+                <!-- Content -->
+                <div class="relative flex h-full flex-col justify-end rounded-[1.5rem] p-6 text-white">
+
+                    <span class="text-sm font-bold text-dara-accent">
+                        New Ceramic Edit
+                    </span>
+
+                    <span class="mt-2 text-3xl font-extrabold">
+                        کالکشن صبحانه آرام
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 </section>

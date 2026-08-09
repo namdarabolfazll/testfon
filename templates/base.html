@@ -1,0 +1,28 @@
+{% load static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dara Home، فروشگاه premium ظروف پذیرایی، سرامیک و لوازم آشپزخانه.">
+  <title>{% block title %}Dara Home | خانه‌ای آرام، میزی ماندگار{% endblock %}</title>
+  <link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="min-h-screen overflow-x-hidden bg-dara-bg text-dara-text">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:right-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-dara-primary focus:px-5 focus:py-3 focus:text-white">رفتن به محتوای اصلی</a>
+  {% include "components/navbar.html" %}
+  {% include "components/mobile-menu.html" %}
+  {% include "components/search-modal.html" %}
+  {% include "components/cart-drawer.html" %}
+  <main id="main-content">{% block content %}{% endblock %}</main>
+  {% include "components/newsletter.html" %}
+  {% include "components/footer.html" %}
+  <script src="{% static 'js/app.js' %}" defer></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

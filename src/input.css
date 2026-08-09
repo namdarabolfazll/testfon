@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-dara-bg font-sans text-dara-text antialiased; }
+  ::selection { @apply bg-dara-accent text-white; }
+  button, a, input, select, textarea { @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-dara-accent focus-visible:ring-offset-2 focus-visible:ring-offset-dara-bg; }
+}
+
+@layer components {
+  .container-dara { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .btn-primary { @apply inline-flex items-center justify-center rounded-full bg-dara-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-dara-accent; }
+  .btn-secondary { @apply inline-flex items-center justify-center rounded-full border border-dara-border bg-white/70 px-6 py-3 text-sm font-semibold text-dara-primary transition hover:border-dara-accent hover:text-dara-accent; }
+  .section-eyebrow { @apply text-xs font-semibold tracking-[0.32em] text-dara-accent; }
+  .surface-card { @apply rounded-[2rem] border border-dara-border bg-white shadow-sm; }
+}

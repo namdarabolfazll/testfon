@@ -1,0 +1,8 @@
+<form class="space-y-6 rounded-[2rem] border border-dara-border bg-white p-5" aria-label="فیلتر محصولات">
+  <div><h3 class="font-extrabold">فیلترها</h3><p class="mt-1 text-sm text-dara-muted">فقط رابط کاربری؛ آماده اتصال به بک‌اند.</p></div>
+  <fieldset><legend class="mb-3 font-bold">دسته‌بندی</legend><div class="space-y-2 text-sm">{% for item in filter_categories %}<label class="flex items-center gap-2"><input type="checkbox" class="accent-dara-accent"> {{ item }}</label>{% empty %}<label class="flex items-center gap-2"><input type="checkbox" class="accent-dara-accent"> سرویس غذاخوری</label><label class="flex items-center gap-2"><input type="checkbox" class="accent-dara-accent"> ظروف سرامیکی</label>{% endfor %}</div></fieldset>
+  <fieldset><legend class="mb-3 font-bold">قیمت</legend><input type="range" min="0" max="100" class="w-full accent-dara-accent"><div class="mt-2 flex justify-between text-xs text-dara-muted"><span>اقتصادی</span><span>ممتاز</span></div></fieldset>
+  <fieldset><legend class="mb-3 font-bold">وضعیت</legend><label class="flex items-center gap-2 text-sm"><input type="checkbox" class="accent-dara-accent"> فقط کالاهای موجود</label></fieldset>
+  <fieldset><legend class="mb-3 font-bold">جنس</legend><div class="grid gap-2 text-sm"><label><input type="checkbox" class="accent-dara-accent"> سرامیک</label><label><input type="checkbox" class="accent-dara-accent"> شیشه</label><label><input type="checkbox" class="accent-dara-accent"> استیل</label></div></fieldset>
+  <button type="button" class="btn-secondary w-full">اعمال فیلتر</button>
+</form>

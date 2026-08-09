@@ -1,0 +1,24 @@
+<header class="sticky top-0 z-40 border-b border-dara-border/80 bg-dara-bg/90 backdrop-blur-xl">
+  <nav class="container-dara flex h-20 items-center justify-between" aria-label="ناوبری اصلی">
+    <div class="flex items-center gap-3 lg:hidden">
+      <button type="button" data-drawer-open="mobile-menu" class="rounded-full border border-dara-border bg-white p-3" aria-label="باز کردن منوی موبایل">☰</button>
+      <button type="button" data-modal-open="search-modal" class="rounded-full border border-dara-border bg-white p-3" aria-label="جستجو">⌕</button>
+    </div>
+    <a href="/" class="group flex items-center gap-3" aria-label="Dara Home">
+      <span class="grid h-11 w-11 place-items-center rounded-full bg-dara-primary text-lg font-bold text-white transition group-hover:bg-dara-accent">D</span>
+      <span class="flex flex-col leading-none"><span class="text-xl font-extrabold tracking-tight">Dara Home</span><span class="mt-1 text-[11px] font-medium tracking-[0.24em] text-dara-secondary">خانه دارا</span></span>
+    </a>
+    <div class="hidden items-center gap-7 text-sm font-semibold text-dara-primary lg:flex">
+      <a href="#categories" class="transition hover:text-dara-accent">دسته‌بندی‌ها</a>
+      <a href="/shop/" class="transition hover:text-dara-accent">فروشگاه</a>
+      <a href="/shop/?sort=new" class="transition hover:text-dara-accent">جدیدترین‌ها</a>
+      <a href="/shop/?sort=best" class="transition hover:text-dara-accent">پرفروش‌ها</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <button type="button" data-modal-open="search-modal" class="hidden rounded-full border border-dara-border bg-white px-4 py-2.5 text-sm font-semibold transition hover:border-dara-accent lg:inline-flex">جستجو</button>
+      <a href="/account/" class="hidden rounded-full p-3 transition hover:bg-white lg:inline-flex" aria-label="حساب کاربری">♡</a>
+      <button type="button" data-wishlist-toggle class="hidden rounded-full p-3 transition hover:bg-white lg:inline-flex" aria-label="علاقه‌مندی‌ها">♥</button>
+      <button type="button" data-drawer-open="cart-drawer" class="relative rounded-full border border-dara-border bg-white p-3" aria-label="سبد خرید"><span>🛒</span><span class="absolute -left-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-dara-accent text-[10px] font-bold text-white">{{ cart_count|default:"0" }}</span></button>
+    </div>
+  </nav>
+</header>

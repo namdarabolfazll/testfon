@@ -11,8 +11,120 @@
 
 @layer components {
   .container-dara { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
-  .btn-primary { @apply inline-flex items-center justify-center rounded-full bg-dara-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-dara-accent; }
-  .btn-secondary { @apply inline-flex items-center justify-center rounded-full border border-dara-border bg-white/70 px-6 py-3 text-sm font-semibold text-dara-primary transition hover:border-dara-accent hover:text-dara-accent; }
+  .btn-primary { @apply inline-flex items-center justify-center rounded-full bg-dara-primary px-6 py-3 text-sm font-semibold text-white hover:bg-dara-accent; }
+  .btn-secondary { @apply inline-flex items-center justify-center rounded-full bg-white/70 px-6 py-3 text-sm font-semibold text-dara-primary hover:text-dara-accent; }
+  .btn-liquid,
+  .btn-primary,
+  .btn-secondary {
+    @apply relative isolate overflow-hidden border border-transparent shadow-sm;
+    --liquid-metal-duration: 8s;
+    --liquid-metal-opacity: 0.78;
+    --liquid-metal-hover-opacity: 0.95;
+    --liquid-metal-border: conic-gradient(
+      from 0deg,
+      rgba(232, 228, 222, 0.72),
+      rgba(255, 255, 255, 0.92) 9%,
+      rgba(186, 178, 167, 0.82) 16%,
+      rgba(184, 139, 90, 0.68) 24%,
+      rgba(232, 228, 222, 0.78) 38%,
+      rgba(255, 255, 255, 0.96) 48%,
+      rgba(138, 121, 104, 0.6) 56%,
+      rgba(250, 249, 246, 0.84) 68%,
+      rgba(184, 139, 90, 0.56) 76%,
+      rgba(232, 228, 222, 0.72)
+    );
+    box-shadow:
+      0 1px 2px rgba(28, 28, 28, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    transition:
+      color 260ms ease,
+      background-color 260ms ease,
+      border-color 260ms ease,
+      box-shadow 260ms ease,
+      transform 260ms ease;
+  }
+  .btn-liquid::before,
+  .btn-liquid::after,
+  .btn-primary::before,
+  .btn-primary::after,
+  .btn-secondary::before,
+  .btn-secondary::after {
+    content: "";
+    @apply pointer-events-none absolute rounded-full;
+  }
+  .btn-liquid::before,
+  .btn-primary::before,
+  .btn-secondary::before {
+    inset: 0;
+    padding: 1px;
+    background: var(--liquid-metal-border);
+    opacity: var(--liquid-metal-opacity);
+    animation: liquid-metal-orbit var(--liquid-metal-duration) linear infinite;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  .btn-liquid::after,
+  .btn-primary::after,
+  .btn-secondary::after {
+    inset: 0;
+    padding: 1px;
+    background:
+      linear-gradient(115deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0) 28% 72%, rgba(184, 139, 90, 0.28)),
+      var(--liquid-metal-border);
+    opacity: 0.72;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  .btn-liquid:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    @apply -translate-y-0.5 shadow-lg;
+  }
+  .btn-liquid:hover::before,
+  .btn-primary:hover::before,
+  .btn-secondary:hover::before {
+    opacity: var(--liquid-metal-hover-opacity);
+  }
+  .btn-liquid:hover::after,
+  .btn-primary:hover::after,
+  .btn-secondary:hover::after {
+    opacity: 0.9;
+  }
+  .btn-liquid:active,
+  .btn-primary:active,
+  .btn-secondary:active {
+    transform: translateY(0);
+    box-shadow:
+      0 1px 2px rgba(28, 28, 28, 0.08),
+      inset 0 1px 3px rgba(28, 28, 28, 0.16);
+  }
   .section-eyebrow { @apply text-xs font-semibold tracking-[0.32em] text-dara-accent; }
   .surface-card { @apply rounded-[2rem] border border-dara-border bg-white shadow-sm; }
+}
+
+@keyframes liquid-metal-orbit {
+  to { transform: rotate(1turn); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-liquid,
+  .btn-primary,
+  .btn-secondary,
+  .btn-liquid::before,
+  .btn-liquid::after,
+  .btn-primary::before,
+  .btn-primary::after,
+  .btn-secondary::before,
+  .btn-secondary::after {
+    animation: none;
+    transition-duration: 0.01ms;
+  }
+
+  .btn-liquid::before,
+  .btn-primary::before,
+  .btn-secondary::before {
+    transform: rotate(18deg);
+  }
 }

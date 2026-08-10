@@ -1,5 +1,7 @@
 from django.contrib.auth import login
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
+from django.views.generic import FormView, TemplateView
 
 from authentication.forms import UserRegistrationForm
 
@@ -24,4 +26,5 @@ def register(request):
             "form": form,
         },
     )
-
+class LoginView(TemplateView):
+    template_name = 'admin/login.html'

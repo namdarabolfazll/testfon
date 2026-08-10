@@ -23,4 +23,5 @@ admin.site.login_form = AdminEmailOrUsernameAuthenticationForm
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('' , include('shop.urls' , namespace='shop')),
+    path('accountlogin/' , include('authentication.urls' , namespace='authentication')),
 ]

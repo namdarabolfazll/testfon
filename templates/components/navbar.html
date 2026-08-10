@@ -16,7 +16,7 @@
     </div>
     <div class="flex items-center gap-2">
       <button type="button" data-modal-open="search-modal" class="hidden rounded-full border border-dara-border bg-white px-4 py-2.5 text-sm font-semibold transition hover:border-dara-accent lg:inline-flex">جستجو</button>
-      <a href="/account/" class="hidden rounded-full p-3 transition hover:bg-white lg:inline-flex" aria-label="حساب کاربری">♡</a>
+      <a href="{% url 'authentication:login' %}" class="hidden rounded-full p-3 transition hover:bg-white lg:inline-flex" aria-label="حساب کاربری">♡</a>
       <button type="button" data-wishlist-toggle class="hidden rounded-full p-3 transition hover:bg-white lg:inline-flex" aria-label="علاقه‌مندی‌ها">♥</button>
       <button type="button" data-drawer-open="cart-drawer" class="relative rounded-full border border-dara-border bg-white p-3" aria-label="سبد خرید"><span>🛒</span><span class="absolute -left-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-dara-accent text-[10px] font-bold text-white">{{ cart_count|default:"0" }}</span></button>
     </div>

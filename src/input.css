@@ -102,6 +102,7 @@
   }
   .section-eyebrow { @apply text-xs font-semibold tracking-[0.32em] text-dara-accent; }
   .surface-card { @apply rounded-[2rem] border border-dara-border bg-white shadow-sm; }
+  .admin-login-input { @apply w-full border-0 bg-transparent p-0 text-left text-sm font-medium text-dara-primary placeholder:text-dara-muted/70 focus:outline-none focus:ring-0; }
 }
 
 @keyframes liquid-metal-orbit {

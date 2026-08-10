@@ -1,0 +1,81 @@
+{% load i18n static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>ورود به پنل مدیریت | Dara Home</title>
+  <link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body class="min-h-screen bg-dara-bg font-sans text-dara-text antialiased">
+  <main class="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-10 sm:px-6 lg:px-8">
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(184,139,90,0.18),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(138,121,104,0.14),transparent_32%)]"></div>
+    <section class="grid w-full max-w-5xl overflow-hidden rounded-[2rem] border border-dara-border bg-white/85 shadow-2xl shadow-dara-primary/10 backdrop-blur lg:grid-cols-[0.9fr_1.1fr]">
+      <aside class="relative hidden min-h-[34rem] flex-col justify-between overflow-hidden bg-dara-primary p-10 text-white lg:flex">
+        <div class="absolute inset-0 opacity-50 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.24),transparent_28%),radial-gradient(circle_at_80%_75%,rgba(184,139,90,0.4),transparent_30%)]"></div>
+        <div class="relative z-10">
+          <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-xl font-extrabold text-dara-primary">DH</div>
+          <p class="mt-6 text-sm font-medium text-white/70">Dara Home Admin</p>
+          <h1 class="mt-3 text-4xl font-extrabold leading-tight">ورود امن به پنل مدیریت</h1>
+        </div>
+        <div class="relative z-10 rounded-3xl border border-white/15 bg-white/10 p-5 text-sm leading-7 text-white/80">
+          این بخش فقط برای مدیران و کاربران مجاز قابل دسترسی است.
+        </div>
+      </aside>
+
+      <div class="p-6 sm:p-10 lg:p-12">
+        <div class="mb-8 text-center lg:text-right">
+          <div class="mx-auto mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-dara-primary text-xl font-extrabold text-white lg:hidden">DH</div>
+          <p class="section-eyebrow">DARA HOME</p>
+          <h2 class="mt-3 text-3xl font-extrabold text-dara-primary">ورود به پنل مدیریت</h2>
+          <p class="mt-3 text-sm leading-6 text-dara-muted">برای ادامه، نام کاربری یا ایمیل و رمز عبور مدیر را وارد کنید.</p>
+        </div>
+
+        {% if form.errors and not form.non_field_errors %}
+          <div class="mb-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">لطفاً خطاهای فرم را بررسی کنید.</div>
+        {% endif %}
+        {% if form.non_field_errors %}
+          <div class="mb-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {% for error in form.non_field_errors %}<p>{{ error }}</p>{% endfor %}
+          </div>
+        {% endif %}
+
+        <form action="{{ app_path }}" method="post" novalidate data-admin-login-form class="space-y-5">
+          {% csrf_token %}
+          {% if redirect_field_value %}<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">{% endif %}
+
+          <div>
+            <label for="{{ form.username.id_for_label }}" class="mb-2 block text-sm font-bold text-dara-primary">{{ form.username.label }}</label>
+            <div class="rounded-2xl border border-dara-border bg-white px-4 py-3 transition focus-within:border-dara-accent focus-within:ring-2 focus-within:ring-dara-accent/20">
+              {{ form.username }}
+            </div>
+            {% for error in form.username.errors %}<p class="mt-2 text-xs text-red-600">{{ error }}</p>{% endfor %}
+          </div>
+
+          <div>
+            <label for="{{ form.password.id_for_label }}" class="mb-2 block text-sm font-bold text-dara-primary">{{ form.password.label }}</label>
+            <div class="flex items-center gap-3 rounded-2xl border border-dara-border bg-white px-4 py-3 transition focus-within:border-dara-accent focus-within:ring-2 focus-within:ring-dara-accent/20">
+              {{ form.password }}
+              <button type="button" data-password-toggle aria-controls="{{ form.password.id_for_label }}" class="shrink-0 rounded-full px-3 py-1 text-xs font-bold text-dara-secondary hover:bg-dara-bg hover:text-dara-accent">نمایش</button>
+            </div>
+            {% for error in form.password.errors %}<p class="mt-2 text-xs text-red-600">{{ error }}</p>{% endfor %}
+          </div>
+
+          <button type="submit" data-login-submit class="btn-primary w-full py-3.5 text-base">
+            <span data-login-submit-text>ورود</span>
+            <span data-login-loading-text class="hidden">در حال بررسی...</span>
+          </button>
+        </form>
+
+        <p class="mt-6 rounded-2xl bg-dara-bg px-4 py-3 text-center text-xs leading-6 text-dara-muted">این بخش فقط برای مدیران و کاربران مجاز قابل دسترسی است.</p>
+      </div>
+    </section>
+  </main>
+  <script src="{% static 'js/admin-login.js' %}" defer></script>
+</body>
+</html>

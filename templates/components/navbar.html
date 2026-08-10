@@ -9,8 +9,8 @@
       <span class="flex flex-col leading-none"><span class="text-xl font-extrabold tracking-tight">Dara Home</span><span class="mt-1 text-[11px] font-medium tracking-[0.24em] text-dara-secondary">خانه دارا</span></span>
     </a>
     <div class="hidden items-center gap-7 text-sm font-semibold text-dara-primary lg:flex">
-      <a href="#categories" class="transition hover:text-dara-accent">دسته‌بندی‌ها</a>
-      <a href="/shop/" class="transition hover:text-dara-accent">فروشگاه</a>
+      <a href="{% url 'shop:categories' %}" class="transition hover:text-dara-accent">دسته‌بندی‌ها</a>
+      <a href="{% url 'shop:products' %}" class="transition hover:text-dara-accent">فروشگاه</a>
       <a href="/shop/?sort=new" class="transition hover:text-dara-accent">جدیدترین‌ها</a>
       <a href="/shop/?sort=best" class="transition hover:text-dara-accent">پرفروش‌ها</a>
     </div>

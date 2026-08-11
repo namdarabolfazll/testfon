@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from testfon.admin_forms import AdminEmailOrUsernameAuthenticationForm
 from django.urls import path , include
+from django.conf import settings
+from django.conf.urls.static import static
 
 admin.site.login_form = AdminEmailOrUsernameAuthenticationForm
 
@@ -25,3 +27,8 @@ urlpatterns = [
     path('' , include('shop.urls' , namespace='shop')),
     path('accountlogin/' , include('authentication.urls' , namespace='authentication')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -1,4 +1,9 @@
-<a href="{{ category.url|default:'#' }}" class="group block overflow-hidden rounded-[1.75rem] border border-dara-border bg-white p-3 transition duration-300 hover:-translate-y-1 hover:border-dara-accent hover:shadow-lg">
-  <div class="aspect-[4/3] overflow-hidden rounded-[1.35rem] bg-dara-bg"><img src="{{ category.image|default:'/static/img/favicon.svg' }}" alt="{{ category.title }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy"></div>
-  <div class="flex items-center justify-between px-2 py-4"><h3 class="font-bold text-dara-primary">{{ category.title }}</h3><span class="text-dara-accent transition group-hover:-translate-x-1">←</span></div>
+<a href="{{ category.url|default:'#' }}"
+   class="group block overflow-hidden rounded-[1.75rem] border border-dara-border bg-white p-3 transition duration-300 hover:-translate-y-1 hover:border-dara-accent hover:shadow-lg">
+    <div class="aspect-[4/3] overflow-hidden rounded-[1.35rem] bg-dara-bg"><img
+            src="{{ category.image|default:'/static/img/favicon.svg' }}" alt="{{ category.title }}"
+            class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy"></div>
+    <div class="flex items-center justify-between px-2 py-4"><h3
+            class="font-bold text-dara-primary">{{ category.title }}</h3><span
+            class="text-dara-accent transition group-hover:-translate-x-1">←</span></div>
 </a>

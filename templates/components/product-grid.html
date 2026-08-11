@@ -1,1 +1,9 @@
-<div class="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4 lg:gap-6">{% for product in products %}{% include "components/product-card.html" with product=product %}{% empty %}<div class="col-span-full rounded-[2rem] border border-dashed border-dara-border bg-white p-10 text-center text-dara-muted">محصولی برای نمایش وجود ندارد.</div>{% endfor %}</div>
+<div class="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4 lg:gap-6">
+    {% for product in products %}
+        {% include "components/product-card.html" with product=product %}
+    {% empty %}
+        <div class="col-span-full rounded-[2rem] border border-dashed border-dara-border bg-white p-10 text-center text-dara-muted">
+            محصولی برای نمایش وجود ندارد.
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}درخواست نامعتبر | Dara Home{% endblock %}
+{% block content %}
+    {% include "components/error-page.html" with error_code="400" error_title="درخواست نامعتبر است." error_description="اطلاعات ارسال‌شده قابل پردازش نیست." secondary_label="بازگشت به فروشگاه" %}
+{% endblock %}

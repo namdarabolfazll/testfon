@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 from pathlib import Path
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +24,7 @@ SECRET_KEY = 'django-insecure-j7jppi!j=1l%fa)5q&v-=xn%+_3s0j)k2*eq(-(3@12+)qp5m&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
@@ -81,6 +80,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -134,3 +135,8 @@ MAILERS = {
 }
 
 AUTH_USER_MODEL = 'authentication.User'
+
+handler404 = 'testfon.views.custom_404'
+handler403 = 'testfon.views.custom_403'
+handler500 = 'testfon.views.custom_500'
+handler400 = 'testfon.views.custom_400'

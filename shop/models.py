@@ -251,8 +251,8 @@ class ProductVariant(TimeStampedModel):
         ordering = ("product", "sku")
         indexes = [models.Index(fields=("sku",)), models.Index(fields=("product", "is_active"))]
         constraints = [
-            models.CheckConstraint(check=Q(price__gte=0), name="product_variant_price_non_negative"),
-            models.CheckConstraint(check=Q(compare_at_price__isnull=True) | Q(compare_at_price__gte=0), name="product_variant_compare_price_non_negative"),
+            models.CheckConstraint(condition=Q(price__gte=0), name="product_variant_price_non_negative"),
+            models.CheckConstraint(condition=Q(compare_at_price__isnull=True) | Q(compare_at_price__gte=0), name="product_variant_compare_price_non_negative"),
         ]
 
     def clean(self):

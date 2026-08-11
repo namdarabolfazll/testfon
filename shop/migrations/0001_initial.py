@@ -183,8 +183,8 @@ class Migration(migrations.Migration):
         migrations.AddConstraint("productattributevalue", models.UniqueConstraint(fields=("product", "attribute"), name="uniq_product_attribute")),
         migrations.AddConstraint("productoption", models.UniqueConstraint(fields=("product", "slug"), name="uniq_product_option_slug")),
         migrations.AddConstraint("productoptionvalue", models.UniqueConstraint(fields=("option", "slug"), name="uniq_product_option_value_slug")),
-        migrations.AddConstraint("productvariant", models.CheckConstraint(check=Q(("price__gte", 0)), name="product_variant_price_non_negative")),
-        migrations.AddConstraint("productvariant", models.CheckConstraint(check=Q(("compare_at_price__isnull", True)) | Q(("compare_at_price__gte", 0)), name="product_variant_compare_price_non_negative")),
+        migrations.AddConstraint("productvariant", models.CheckConstraint(condition=Q(("price__gte", 0)), name="product_variant_price_non_negative")),
+        migrations.AddConstraint("productvariant", models.CheckConstraint(condition=Q(("compare_at_price__isnull", True)) | Q(("compare_at_price__gte", 0)), name="product_variant_compare_price_non_negative")),
         migrations.AddConstraint("variantoptionvalue", models.UniqueConstraint(fields=("variant", "option"), name="uniq_variant_option")),
         migrations.AddConstraint("productimage", models.UniqueConstraint(condition=Q(("is_primary", True)), fields=("product",), name="uniq_primary_image_per_product")),
     ]

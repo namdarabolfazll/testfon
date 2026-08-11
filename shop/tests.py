@@ -2,7 +2,7 @@ from io import BytesIO
 from tempfile import TemporaryDirectory
 from unittest import mock
 import warnings
-
+from decimal import Decimal
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import IntegrityError, transaction

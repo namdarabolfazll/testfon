@@ -115,7 +115,6 @@ class ProductOptionAdmin(admin.ModelAdmin):
     autocomplete_fields = ("product",)
     inlines = (ProductOptionValueInline,)
 
-
 class VariantOptionValueInline(admin.TabularInline):
     model = VariantOptionValue
     extra = 1
@@ -124,7 +123,14 @@ class VariantOptionValueInline(admin.TabularInline):
 
 @admin.register(ProductVariant)
 class ProductVariantAdmin(admin.ModelAdmin):
-    list_display = ("sku", "product", "price", "stock_quantity", "low_stock_threshold", "is_active")
+    list_display = (
+        "sku",
+        "product",
+        "price",
+        "stock_quantity",
+        "low_stock_threshold",
+        "is_active",
+    )
     list_filter = ("is_active", "product__category")
     search_fields = ("sku", "barcode", "product__name")
     autocomplete_fields = ("product",)
@@ -134,12 +140,30 @@ class ProductVariantAdmin(admin.ModelAdmin):
 
 @admin.register(ProductImage)
 class ProductImageAdmin(admin.ModelAdmin):
-    list_display = ("product", "variant", "alt_text", "is_primary", "sort_order", "created_at")
+    list_display = (
+        "product",
+        "variant",
+        "alt_text",
+        "is_primary",
+        "sort_order",
+        "created_at",
+    )
     list_filter = ("is_primary", "product__category")
     search_fields = ("product__name", "alt_text")
     autocomplete_fields = ("product", "variant")
 
 
+@admin.register(ProductOptionValue)
+class ProductOptionValueAdmin(admin.ModelAdmin):
+    list_display = ("value", "option", "sort_order")
+    search_fields = (
+        "value",
+        "option__name",
+        "option__product__name",
+    )
+    autocomplete_fields = ("option",)
+    ordering = ("option", "sort_order", "value")
+
+
 admin.site.register(CategoryAttribute)
-admin.site.register(ProductOptionValue)
 admin.site.register(VariantOptionValue)

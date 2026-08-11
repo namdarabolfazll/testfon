@@ -15,25 +15,41 @@ class ProcessedImage:
     width: int
     height: int
     format: str = "WEBP"
+from django.core.exceptions import ValidationError
+from PIL import Image, ImageOps, UnidentifiedImageError
 
 
 def open_validated_image(file_obj):
     try:
-        if hasattr(file_obj, "seek"):
-            file_obj.seek(0)
+        file_obj.seek(0)
+
         image = Image.open(file_obj)
+
         validate_image(image)
-        image = ImageOps.exif_transpose(image)
+
         image.load()
-        validate_image(image)
+
+        image = ImageOps.exif_transpose(image)
+
         return image
-    except Exception as exc:  # Pillow raises several concrete exceptions for broken files.
-        converted = validation_error_from_pillow(exc)
-        if isinstance(converted, ValidationError):
-            raise converted
+
+    except ValidationError:
         raise
 
+    except Image.DecompressionBombError as exc:
+        raise ValidationError(
+            "Image is too large or potentially unsafe."
+        ) from exc
 
+    except Image.DecompressionBombWarning as exc:
+        raise ValidationError(
+            "Image dimensions are too large."
+        ) from exc
+
+    except (UnidentifiedImageError, OSError) as exc:
+        raise ValidationError(
+            "Invalid or corrupted image."
+        ) from exc
 def has_alpha(image):
     if image.mode in ("RGBA", "LA"):
         return True

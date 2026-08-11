@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}صفحه پیدا نشد | Dara Home{% endblock %}
+{% block content %}
+    {% include "components/error-page.html" with error_code="404" error_title="صفحه‌ای که دنبالش بودید پیدا نشد." error_description="ممکن است آدرس صفحه تغییر کرده باشد یا صفحه دیگر وجود نداشته باشد." secondary_label="مشاهده فروشگاه" %}
+{% endblock %}

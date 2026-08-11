@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}خطای سرور | Dara Home{% endblock %}
+{% block content %}
+    {% include "components/error-page.html" with error_code="500" error_title="مشکلی در سمت سرور رخ داده است." error_description="متأسفانه در حال حاضر امکان پردازش درخواست شما وجود ندارد." secondary_label="تلاش مجدد" retry_action=True %}
+{% endblock %}

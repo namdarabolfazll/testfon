@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}دسترسی غیرمجاز | Dara Home{% endblock %}
+{% block content %}
+    {% include "components/error-page.html" with error_code="403" error_title="دسترسی به این صفحه امکان‌پذیر نیست." error_description="شما اجازه دسترسی به این بخش را ندارید." secondary_label="مشاهده فروشگاه" %}
+{% endblock %}

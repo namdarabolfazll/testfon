@@ -1,0 +1,49 @@
+<section class="relative isolate overflow-hidden">
+    <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-64 bg-[radial-gradient(circle_at_top,#efe4d8_0%,rgba(250,249,246,0)_68%)]"></div>
+    <div class="container-dara flex min-h-[68vh] items-center py-16 sm:py-20 lg:py-24">
+        <div class="grid w-full items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+            <div class="mx-auto max-w-2xl text-center lg:mx-0 lg:text-right">
+                <p class="section-eyebrow">DARA HOME</p>
+                <p class="mt-5 text-7xl font-extrabold leading-none tracking-tight text-dara-primary sm:text-8xl lg:text-9xl" aria-label="خطای {{ error_code }}">
+                    {{ error_code }}
+                </p>
+                <h1 class="mt-6 text-2xl font-extrabold leading-10 text-dara-primary sm:text-3xl lg:text-4xl">
+                    {{ error_title }}
+                </h1>
+                <p class="mx-auto mt-4 max-w-xl text-base leading-8 text-dara-secondary sm:text-lg lg:mx-0">
+                    {{ error_description }}
+                </p>
+                <div class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center lg:justify-start">
+                    <a href="{% url 'shop:home' %}" class="btn-primary min-w-48 px-7 py-3.5" aria-label="بازگشت به صفحه اصلی Dara Home">
+                        بازگشت به صفحه اصلی
+                    </a>
+                    {% if retry_action %}
+                        <a href="" class="btn-secondary min-w-48 border-dara-border px-7 py-3.5" aria-label="تلاش مجدد برای بارگذاری همین صفحه">
+                            {{ secondary_label }}
+                        </a>
+                    {% else %}
+                        <a href="{% url 'shop:products' %}" class="btn-secondary min-w-48 border-dara-border px-7 py-3.5" aria-label="مشاهده فروشگاه Dara Home">
+                            {{ secondary_label }}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="relative mx-auto aspect-square w-full max-w-md lg:max-w-lg" aria-hidden="true">
+                <div class="absolute inset-6 rounded-full border border-dara-border bg-white/70 shadow-sm"></div>
+                <div class="absolute inset-14 rounded-full border border-dara-border bg-[linear-gradient(145deg,#ffffff,#f1ebe4)] shadow-[0_30px_80px_rgba(28,28,28,0.08)]"></div>
+                <div class="absolute inset-[28%] rounded-full border border-dara-border bg-dara-bg shadow-inner"></div>
+                <div class="absolute right-[18%] top-[22%] h-28 w-28 rounded-full border border-dara-border bg-white shadow-lg sm:h-32 sm:w-32">
+                    <div class="absolute inset-4 rounded-full border border-dara-border bg-[linear-gradient(145deg,#fff,#f5eee7)]"></div>
+                    <div class="absolute -left-7 top-9 h-12 w-10 rounded-full border-4 border-dara-border bg-transparent"></div>
+                </div>
+                <div class="absolute bottom-[18%] left-[16%] h-24 w-44 rounded-b-[3rem] rounded-t-[1.4rem] border border-dara-border bg-[linear-gradient(180deg,#ffffff,#eadfD3)] shadow-xl sm:h-28 sm:w-52">
+                    <div class="absolute inset-x-5 top-4 h-3 rounded-full bg-dara-accent/20"></div>
+                </div>
+                <div class="absolute left-[18%] top-[16%] h-3 w-3 rounded-full bg-dara-accent/60"></div>
+                <div class="absolute bottom-[22%] right-[16%] h-4 w-4 rounded-full bg-dara-secondary/30"></div>
+                <div class="absolute bottom-[10%] right-[26%] h-px w-36 rotate-[-10deg] bg-dara-border"></div>
+            </div>
+        </div>
+    </div>
+</section>

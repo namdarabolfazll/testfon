@@ -1,21 +1,25 @@
 {% extends "base.html" %}
+{% load image_variants %}
 {% block title %}{{ product.name|default:"جزئیات محصول" }} | Dara Home{% endblock %}
 {% block content %}
     <section class="container-dara py-10">{% include "components/breadcrumb.html" %}
         <div class="mt-8 grid gap-10 lg:grid-cols-2">
             <div>
                 <div class="overflow-hidden rounded-[2.5rem] border border-dara-border bg-white p-3"><img
-                        data-gallery-main src="{{ product.image|default:'/static/img/favicon.svg' }}"
+                        data-gallery-main src="{% if product.image %}{{ product.image|image_variant:'detail' }}{% else %}/static/img/favicon.svg{% endif %}"
+                        width="1200" height="1200"
                         alt="{{ product.name|default:'محصول' }}"
                         class="aspect-square w-full rounded-[2rem] object-cover"></div>
                 <div class="mt-4 grid grid-cols-4 gap-3">{% for image in product.gallery %}
                     <button data-gallery-thumb data-src="{{ image.url }}"
-                            class="rounded-2xl border border-dara-border bg-white p-2"><img src="{{ image.url }}"
+                            class="rounded-2xl border border-dara-border bg-white p-2"><img src="{{ image|image_variant:'thumb' }}"
+                                                                                            width="300" height="300"
                                                                                             alt="{{ product.name }}"
                                                                                             class="aspect-square rounded-xl object-cover">
                     </button>{% empty %}
                     <button data-gallery-thumb class="rounded-2xl border border-dara-accent bg-white p-2"><img
-                            src="{{ product.image|default:'/static/img/favicon.svg' }}"
+                            src="{% if product.image %}{{ product.image|image_variant:'thumb' }}{% else %}/static/img/favicon.svg{% endif %}"
+                            width="300" height="300"
                             alt="{{ product.name|default:'محصول' }}" class="aspect-square rounded-xl object-cover">
                     </button>{% endfor %}</div>
             </div>

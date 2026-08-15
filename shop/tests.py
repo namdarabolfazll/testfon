@@ -137,3 +137,61 @@ class CatalogModelTests(TestCase):
         ProductImage.objects.create(product=self.product, image=image_file("Main Image.JPG"), is_primary=True)
         self.assertTrue(str(self.product.image).endswith("main-image.webp"))
         self.assertEqual(self.product.gallery.count(), 1)
+
+class ProductDetailVariantTests(TestCase):
+    def setUp(self):
+        self.category = Category.objects.create(name="Cookware", slug="cookware")
+        self.product = Product.objects.create(
+            name="ست قابلمه ۱۰ پارچه",
+            slug="cookware-set",
+            category=self.category,
+            status=Product.Status.ACTIVE,
+            is_active=True,
+        )
+        self.color = ProductOption.objects.create(product=self.product, name="رنگ", slug="color", sort_order=1)
+        self.material = ProductOption.objects.create(product=self.product, name="جنس", slug="material", sort_order=2)
+        self.black = ProductOptionValue.objects.create(option=self.color, value="مشکی", slug="black", sort_order=1)
+        self.white = ProductOptionValue.objects.create(option=self.color, value="سفید", slug="white", sort_order=2)
+        self.granite = ProductOptionValue.objects.create(option=self.material, value="گرانیتی", slug="granite", sort_order=1)
+        self.steel = ProductOptionValue.objects.create(option=self.material, value="استیل", slug="steel", sort_order=2)
+
+    def _variant(self, sku, price="100.00", stock=1, active=True, compare_at_price=None, values=None):
+        variant = ProductVariant.objects.create(
+            product=self.product,
+            sku=sku,
+            price=price,
+            compare_at_price=compare_at_price,
+            stock_quantity=stock,
+            is_active=active,
+        )
+        for option, value in (values or []):
+            VariantOptionValue.objects.create(variant=variant, option=option, value=value)
+        return variant
+
+    def test_product_without_variant_keeps_selector_hidden(self):
+        response = self.client.get(f"/products/{self.product.slug}/")
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(response.context["show_variant_selector"])
+        self.assertNotContains(response, 'data-variant-selector')
+
+    def test_single_variant_keeps_selector_hidden_but_cart_gets_variant(self):
+        variant = self._variant("COOK-001", values=[(self.color, self.black), (self.material, self.granite)])
+        response = self.client.get(f"/products/{self.product.slug}/")
+        self.assertFalse(response.context["show_variant_selector"])
+        self.assertContains(response, f'data-selected-variant-id="{variant.id}"')
+
+    def test_multiple_variants_render_database_options_and_payload(self):
+        self._variant("COOK-001", price="6800000.00", stock=6, compare_at_price="7500000.00", values=[(self.color, self.black), (self.material, self.granite)])
+        inactive = self._variant("COOK-002", active=False, values=[(self.color, self.white), (self.material, self.steel)])
+        response = self.client.get(f"/products/{self.product.slug}/")
+        self.assertTrue(response.context["show_variant_selector"])
+        self.assertContains(response, "مشکی")
+        self.assertNotContains(response, "سفید")
+        payload = response.context["variant_payload"]
+        self.assertEqual(len(payload), 2)
+        self.assertFalse(next(item for item in payload if item["id"] == inactive.id)["is_available"])
+
+    def test_out_of_stock_variant_disables_initial_add_to_cart_when_no_available_stock(self):
+        self._variant("COOK-001", stock=0, values=[(self.color, self.black), (self.material, self.granite)])
+        response = self.client.get(f"/products/{self.product.slug}/")
+        self.assertContains(response, "disabled aria-disabled")

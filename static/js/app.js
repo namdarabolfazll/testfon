@@ -41,6 +41,82 @@
     });
   });
 
+  function initVariantSelector() {
+    const dataEl = qs('#variant-data');
+    const selector = qs('[data-variant-selector]');
+    const addButton = qs('[data-add-to-cart]');
+    if (!dataEl || !addButton) return;
+
+    let variants = [];
+    try {
+      variants = JSON.parse(dataEl.textContent || '[]');
+    } catch (error) {
+      variants = [];
+    }
+
+    const priceEl = qs('[data-variant-price]');
+    const compareEl = qs('[data-variant-compare-price]');
+    const stockEl = qs('[data-variant-stock]');
+    const skuEl = qs('[data-variant-sku]');
+    const skuText = skuEl ? qs('span', skuEl) : null;
+    const unavailableEl = qs('[data-variant-unavailable]');
+    const buttons = qsa('[data-variant-option]', selector || document);
+    const selections = {};
+
+    function sameOptions(variant) {
+      const selectedKeys = Object.keys(selections);
+      const variantKeys = Object.keys(variant.option_values || {});
+      return selectedKeys.length === variantKeys.length && selectedKeys.every((key) => String(variant.option_values[key]) === String(selections[key]));
+    }
+
+    function updateState(variant) {
+      const isAvailable = variant && variant.is_available;
+      if (variant) {
+        if (priceEl) priceEl.textContent = variant.price || '—';
+        if (compareEl) {
+          compareEl.textContent = variant.compare_at_price || '';
+          compareEl.classList.toggle('hidden', !variant.compare_at_price);
+        }
+        if (stockEl) stockEl.textContent = variant.stock_quantity > 0 ? `موجودی: ${variant.stock_quantity}` : 'ناموجود';
+        if (skuEl && skuText) {
+          skuText.textContent = variant.sku || '';
+          skuEl.classList.toggle('hidden', !variant.sku);
+        }
+      }
+      if (unavailableEl) unavailableEl.classList.toggle('hidden', Boolean(isAvailable));
+      addButton.dataset.selectedVariantId = isAvailable ? String(variant.id) : '';
+      addButton.disabled = !isAvailable;
+      addButton.setAttribute('aria-disabled', isAvailable ? 'false' : 'true');
+      addButton.classList.toggle('opacity-60', !isAvailable);
+      addButton.classList.toggle('cursor-not-allowed', !isAvailable);
+    }
+
+    function markSelected(optionId, valueId) {
+      selections[optionId] = String(valueId);
+      qsa(`[data-variant-option="${optionId}"]`, selector).forEach((item) => {
+        const selected = String(item.dataset.variantValue) === String(valueId);
+        item.classList.toggle('border-dara-primary', selected);
+        item.classList.toggle('border-dara-border', !selected);
+      });
+    }
+
+    if (buttons.length) {
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          markSelected(btn.dataset.variantOption, btn.dataset.variantValue);
+          const variant = variants.find((item) => item.is_active && sameOptions(item));
+          updateState(variant || null);
+        });
+      });
+
+      const initialVariant = variants.find((item) => String(item.id) === String(addButton.dataset.selectedVariantId));
+      if (initialVariant) {
+        Object.entries(initialVariant.option_values || {}).forEach(([optionId, valueId]) => markSelected(optionId, valueId));
+      }
+    }
+  }
+
+
   qsa('[data-wishlist-toggle]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const active = btn.classList.toggle('is-active');
@@ -48,4 +124,6 @@
       btn.textContent = active ? '♥' : '♡';
     });
   });
+
+  initVariantSelector();
 })();

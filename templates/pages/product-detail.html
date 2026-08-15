@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load image_variants %}
-{% block title %}{{ product.name|default:"جزئیات محصول" }} | Dara Home{% endblock %}
+{% block title %}{{ product.name|default:"جزئیات محصول" }} | Dara Home{{ variant_payload|json_script:"variant-data" }}{% endblock %}
 {% block content %}
     <section class="container-dara py-10">{% include "components/breadcrumb.html" %}
         <div class="mt-8 grid gap-10 lg:grid-cols-2">
@@ -27,17 +27,25 @@
                 <h1 class="mt-4 text-4xl font-extrabold leading-tight">{{ product.name|default:'نام محصول' }}</h1>
                 <div class="mt-4 flex items-center gap-3 text-sm text-dara-muted">
                     <span>★★★★★</span><span>{{ product.rating|default:'۴.۸' }} از ۵</span></div>
-                <div class="mt-6 text-2xl font-extrabold">{% if product.discount_price %}
-                    <span>{{ product.discount_price }}</span>
-                    <span class="mr-3 text-base text-dara-muted line-through">{{ product.price }}</span>{% else %}
-                    {{ product.price|default:'—' }}{% endif %}</div>
+                <div class="mt-6 text-2xl font-extrabold">{% if selected_variant %}
+                    <span data-variant-price>{{ selected_variant.price }}</span>
+                    <span data-variant-compare-price class="mr-3 text-base text-dara-muted line-through{% if not selected_variant.compare_at_price %} hidden{% endif %}">{{ selected_variant.compare_at_price }}</span>{% elif product.discount_price %}
+                    <span data-variant-price>{{ product.discount_price }}</span>
+                    <span data-variant-compare-price class="mr-3 text-base text-dara-muted line-through">{{ product.price }}</span>{% else %}
+                    <span data-variant-price>{{ product.price|default:'—' }}</span>
+                    <span data-variant-compare-price class="mr-3 text-base text-dara-muted line-through hidden"></span>{% endif %}</div>
                 <p class="mt-6 leading-8 text-dara-secondary">{{ product.description|default:'توضیحات محصول از بک‌اند نمایش داده می‌شود. این بخش برای معرفی جنس، ابعاد، نحوه نگهداری و حس کلی محصول آماده شده است.' }}</p>
-                <div class="mt-8"><h2 class="font-bold">انتخاب رنگ / لعاب</h2>
-                    <div class="mt-3 flex gap-2">
-                        <button class="h-9 w-9 rounded-full border-2 border-dara-primary bg-[#f1e7dc]"></button>
-                        <button class="h-9 w-9 rounded-full border border-dara-border bg-white"></button>
-                        <button class="h-9 w-9 rounded-full border border-dara-border bg-[#c7b7a4]"></button>
-                    </div>
+                {% if show_variant_selector %}<div class="mt-8" data-variant-selector>
+                    {% for group in variant_options %}<div{% if not forloop.first %} class="mt-5"{% endif %}><h2 class="font-bold">{{ group.option.name }}</h2>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            {% for value in group.values %}<button type="button" data-variant-option="{{ group.option.id }}" data-variant-value="{{ value.id }}" class="rounded-full border border-dara-border bg-white px-4 py-2 text-sm">{{ value.value }}</button>{% endfor %}
+                        </div>
+                    </div>{% endfor %}
+                </div>{% endif %}
+                <div class="mt-4 grid gap-2 text-sm text-dara-muted">
+                    <p data-variant-stock>{% if selected_variant %}{% if selected_variant.stock_quantity > 0 %}موجودی: {{ selected_variant.stock_quantity }}{% else %}ناموجود{% endif %}{% elif product.in_stock %}موجود{% else %}ناموجود{% endif %}</p>
+                    <p data-variant-sku{% if not selected_variant.sku %} class="hidden"{% endif %}>SKU: <span>{{ selected_variant.sku }}</span></p>
+                    <p data-variant-unavailable class="hidden">این ترکیب در حال حاضر قابل خرید نیست.</p>
                 </div>
                 <div class="mt-8 flex flex-col gap-3 sm:flex-row">
                     <div class="flex w-36 items-center justify-between rounded-full border border-dara-border bg-white px-3">
@@ -45,7 +53,7 @@
                         <input data-qty-input value="1" min="1" class="w-10 bg-transparent text-center">
                         <button data-qty-plus class="p-3">+</button>
                     </div>
-                    <button class="btn-primary flex-1">افزودن به سبد خرید</button>
+                    <button class="btn-primary flex-1" data-add-to-cart data-product-id="{{ product.id }}" data-selected-variant-id="{{ selected_variant.id|default:'' }}"{% if selected_variant and selected_variant.stock_quantity <= 0 %} disabled aria-disabled="true"{% endif %}>افزودن به سبد خرید</button>
                     <button data-wishlist-toggle class="btn-secondary">♡</button>
                 </div>
                 <div class="mt-8 grid gap-3 border-t border-dara-border pt-6 text-sm text-dara-muted"><p>
@@ -56,4 +64,4 @@
         </div>
         <div class="mt-16"><h2 class="mb-6 text-2xl font-extrabold">محصولات
             مرتبط</h2>{% include "components/product-grid.html" with products=related_products %}</div>
-    </section>{% endblock %}
+    </section>{{ variant_payload|json_script:"variant-data" }}{% endblock %}

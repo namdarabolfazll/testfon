@@ -1,11 +1,14 @@
-from django.db.models import Min, Value, Max
-from django.db.models.functions import Coalesce
-from django.shortcuts import render
-from django.views.generic import TemplateView, DetailView , ListView
-from django.db.models import Min, Max, Sum, Value, IntegerField, FloatField, Prefetch, Q, F, Subquery, OuterRef, Count
+from django.db.models import Prefetch
+from django.shortcuts import get_object_or_404
+from django.views.generic import TemplateView, DetailView, ListView
 
-from shop import models
-from shop.models import Product, Category
+from shop.models import (
+    Category,
+    Product,
+    ProductOption,
+    ProductVariant,
+    VariantOptionValue,
+)
 
 
 # Create your views here.
@@ -68,50 +71,92 @@ class ProductListView(ListView):
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'pages/product-detail.html'
+
     def get_object(self, queryset=None):
-        """Get product by id and slug from URL"""
+        """Get product by slug from URL with detail-page relations prefetched."""
         product_id = self.kwargs.get('id')
         slug = self.kwargs.get('slug')
 
+        option_value_prefetch = Prefetch(
+            'option_values',
+            queryset=VariantOptionValue.objects.select_related('option', 'value').order_by(
+                'option__sort_order',
+                'option__name',
+                'value__sort_order',
+                'value__value',
+            ),
+        )
+        variants_prefetch = Prefetch(
+            'variants',
+            queryset=ProductVariant.objects.prefetch_related(option_value_prefetch).order_by('sku'),
+        )
+        options_prefetch = Prefetch(
+            'options',
+            queryset=ProductOption.objects.prefetch_related('values').order_by('sort_order', 'name'),
+        )
         base_qs = Product.objects.select_related('category').prefetch_related(
             'images',
-            'variants',
-            'options'
+            variants_prefetch,
+            options_prefetch,
         )
 
         if product_id:
-            return get_object_or_404(
-                base_qs,
-                id=product_id,
-                is_active=True
-            )
-        return get_object_or_404(
-            base_qs,
-            slug=slug,
-            is_active=True
-        )
+            return get_object_or_404(base_qs, id=product_id, is_active=True)
+        return get_object_or_404(base_qs, slug=slug, is_active=True)
 
-    # @staticmethod
-    # def _variant_natural_key(variant):
-    #     code = variant.variant_code or ''
-    #     persian_digits = '۰۱۲۳۴۵۶۷۸۹'
-    #     english_digits = '0123456789'
-    #     code_en = code.translate(str.maketrans(persian_digits, english_digits))
-    #
-    #     match = re.search(r'\d+', code_en)
-    #     if match:
-    #         return (0, int(match.group()))
-    #     return (1, code)
+    @staticmethod
+    def _money(value):
+        if value is None:
+            return None
+        return format(value, 'f').rstrip('0').rstrip('.')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        product = self.object
+        variants = list(product.variants.all())
+        active_variants = [variant for variant in variants if variant.is_active]
+        selected_variant = next((variant for variant in active_variants if variant.stock_quantity > 0), None)
+        selected_variant = selected_variant or (active_variants[0] if active_variants else None)
+        selectable_value_ids = {
+            option_value.value_id
+            for variant in active_variants
+            for option_value in variant.option_values.all()
+        }
+
+        variant_options = []
+        for option in product.options.all():
+            values = [value for value in option.values.all() if value.id in selectable_value_ids]
+            if values:
+                variant_options.append({'option': option, 'values': values})
+
+        variant_payload = []
+        for variant in variants:
+            values_by_option = {
+                str(option_value.option_id): option_value.value_id
+                for option_value in variant.option_values.all()
+            }
+            variant_payload.append({
+                'id': variant.id,
+                'sku': variant.sku,
+                'price': self._money(variant.price),
+                'compare_at_price': self._money(variant.compare_at_price),
+                'stock_quantity': variant.stock_quantity,
+                'is_active': variant.is_active,
+                'is_available': variant.is_active and variant.stock_quantity > 0,
+                'option_values': values_by_option,
+            })
+
+        context.update({
+            'selected_variant': selected_variant,
+            'variant_options': variant_options,
+            'variant_payload': variant_payload,
+            'show_variant_selector': len(active_variants) > 1 and bool(variant_options),
+            'related_products': Product.objects.filter(
+                category=product.category,
+                is_active=True,
+            ).exclude(pk=product.pk).select_related('category').prefetch_related('images', 'variants')[:4],
+        })
         return context
-
-
-from django.views.generic import ListView
-from django.shortcuts import get_object_or_404
-
-from shop.models import Category, Product
 
 
 # class CategoryDetailView(ListView):
@@ -146,10 +191,6 @@ from shop.models import Category, Product
 #         context["products_count"] = self.get_queryset().count()
 #
 #         return context
-
-from django.views.generic import ListView
-
-from shop.models import Category
 
 
 class CategoryListView(ListView):

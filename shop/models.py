@@ -16,10 +16,19 @@ CATEGORY_IMAGE_VARIANTS = {
     "card": {"size": (640, 480), "mode": "cover"},
 }
 GALLERY_IMAGE_VARIANTS = {
-    "detail": {"size": (1200, 1200), "mode": "cover"},
-    "thumb": {"size": (300, 300), "mode": "cover"},
+    "card": {
+        "size": (600, 600),
+        "mode": "cover",
+    },
+    "detail": {
+        "size": (1200, 1200),
+        "mode": "cover",
+    },
+    "thumb": {
+        "size": (300, 300),
+        "mode": "cover",
+    },
 }
-
 
 class TimeStampedModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -113,6 +122,10 @@ class Product(TimeStampedModel):
     @property
     def in_stock(self):
         return self.variants.filter(is_active=True, stock_quantity__gt=0).exists()
+
+    def get_absolute_url(self) -> str:
+        from django.urls import reverse
+        return reverse('shop:product-detail', kwargs={'id': self.id, 'slug': self.slug})
 
 
 class Attribute(TimeStampedModel):

@@ -1,0 +1,24 @@
+[project]
+name = "testfon"
+version = "0.1.0"
+requires-python = ">=3.14"
+
+dependencies = [
+    "django>=6.0.6,<6.1",
+    "django-ckeditor-5>=0.2.20",
+    "django-filter>=25.2",
+    "django-jalali-date>=2.0.0",
+    "django-redis>=7.0.0",
+    "djangorestframework>=3.17.1",
+    "django-debug-toolbar>=4.0",
+    "mysqlclient>=2.2.8",
+    "packaging>=26.2",
+    "pillow>=12.2.0",
+    "pillow-heif>=1.4.0",
+    "setuptools>=82.0.1",
+]
+
+[[tool.uv.index]]
+name = "devneeds"
+url = "https://pypi.devneeds.ir/simple/"
+default = true

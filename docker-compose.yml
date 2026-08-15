@@ -1,0 +1,98 @@
+x-python: &python_defaults
+  image: testfon:dev
+  restart: unless-stopped
+  environment:
+    - DEPLOY_MODE=DEBUG
+  volumes:
+    - ./:/app
+  networks:
+    - gunicorn_network
+    - db_network
+    - redis_network
+  depends_on:
+    - cache
+    - db
+services:
+  db:
+    image: mariadb:11.7.2
+    container_name: 'testfon_mariadb'
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "testfon"
+      MYSQL_DATABASE: "testfon"
+      MYSQL_USER: "testfon"
+      MYSQL_PASSWORD: "testfon"
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_storage:/var/lib/mysql
+    networks:
+      - db_network
+  cache:
+    image: redis:8.4.0-alpine
+    container_name: 'testfon_redis'
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_storage:/data
+    networks:
+      - redis_network
+  gunicorn:
+    <<: *python_defaults
+    container_name: 'testfon_gunicorn'
+    build:
+      dockerfile: Dockerfile
+      context: .
+  nginx:
+    image: nginx:alpine
+    container_name: 'testfon_nginx'
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./conf/nginx.dev.conf:/etc/nginx/nginx.conf:ro
+      - ./:/app:ro
+    networks:
+      - gunicorn_network
+    depends_on:
+      - gunicorn
+  celery:
+    <<: *python_defaults
+    container_name: 'testfon_celery'
+    command: uv run celery -A testfon worker --loglevel=info
+#  celery_beat:
+#    <<: *python_defaults
+#    container_name: 'testfon_celery_beat'
+#    command: uv run celery -A testfon beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+#    volumes:
+#      - ./:/app
+#      - celery_beat_storage:/app/celerybeat-schedule
+#    depends_on:
+#      - db
+#      - cache
+#      - celery
+  flower:
+    <<: *python_defaults
+    container_name: 'testfon_flower'
+    command: uv run celery -A testfon flower --port=5555
+    ports:
+      - "5555:5555"
+    depends_on:
+      - db
+      - cache
+      - celery
+volumes:
+  db_storage:
+    name: "testfon_db_volume"
+  redis_storage:
+    name: "testfon_redis_volume"
+#  celery_beat_storage:
+#    name: "testfon_celery_beat_volume"
+networks:
+  db_network:
+    name: "testfon_db_network"
+  redis_network:
+    name: "testfon_redis_network"
+  gunicorn_network:
+    name: "testfon_gunicorn_network"

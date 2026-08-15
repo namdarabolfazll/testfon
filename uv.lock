@@ -1,0 +1,287 @@
+version = 1
+revision = 3
+requires-python = ">=3.14"
+
+[[package]]
+name = "asgiref"
+version = "3.12.1"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+sdist = { url = "https://pypi.devneeds.ir/packages/asgiref/3.12.1/asgiref-3.12.1.tar.gz", hash = "sha256:59dcb51c272ad209d59bed5708a64a333083e86017d7fcdd67498eeab7784340" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/asgiref/3.12.1/asgiref-3.12.1-py3-none-any.whl", hash = "sha256:fe386d1c2bff7259ea95929266d12a8cf9a8b5a1c2598402967d8792e7a7c094" },
+]
+
+[[package]]
+name = "django"
+version = "6.0.8"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+dependencies = [
+    { name = "asgiref" },
+    { name = "sqlparse" },
+    { name = "tzdata", marker = "sys_platform == 'win32'" },
+]
+sdist = { url = "https://pypi.devneeds.ir/packages/django/6.0.8/django-6.0.8.tar.gz", hash = "sha256:cb0bd962d27fc866f3c514b20aae6a7df56ec80b488f9899da46d675cd051526" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/django/6.0.8/django-6.0.8-py3-none-any.whl", hash = "sha256:9b98b7e1902e0e575ea4f42c175fc9512784f7f2580898286aee3388b322219d" },
+]
+
+[[package]]
+name = "django-ckeditor-5"
+version = "0.2.20"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+dependencies = [
+    { name = "django" },
+    { name = "pillow" },
+]
+sdist = { url = "https://pypi.devneeds.ir/packages/django-ckeditor-5/0.2.20/django_ckeditor_5-0.2.20.tar.gz", hash = "sha256:7c3d67cc8bbce3564108578b8fafe8e752c6ad4fbf45b1ffee821045ba2c0e96" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/django-ckeditor-5/0.2.20/django_ckeditor_5-0.2.20-py3-none-any.whl", hash = "sha256:dfff659822fb8d42f55b43265cb51bf8b1e0797dc850e0bf5547644daeaa3fff" },
+]
+
+[[package]]
+name = "django-debug-toolbar"
+version = "7.1.0"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+dependencies = [
+    { name = "django" },
+    { name = "sqlparse" },
+]
+sdist = { url = "https://pypi.devneeds.ir/packages/django-debug-toolbar/7.1.0/django_debug_toolbar-7.1.0.tar.gz", hash = "sha256:d9c64faaaf171c1fb485bd0ef855e31809c21ddf032202545efd255701e29782" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/django-debug-toolbar/7.1.0/django_debug_toolbar-7.1.0-py3-none-any.whl", hash = "sha256:814be55805f77b04b1a94395049c80fb7e08f95c6e8d070256c9ed8fd0295084" },
+]
+
+[[package]]
+name = "django-filter"
+version = "26.1"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://pypi.devneeds.ir/packages/django-filter/26.1/django_filter-26.1.tar.gz", hash = "sha256:66ea04031b068c77c86e1ac26ced7a3f8f13ce797f5795751707e3deefc58054" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/django-filter/26.1/django_filter-26.1-py3-none-any.whl", hash = "sha256:7d98ef2899218e6242619b532cb1b95af14e09dfcf74844aecb550ad27b59ff2" },
+]
+
+[[package]]
+name = "django-jalali-date"
+version = "2.0.0"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+dependencies = [
+    { name = "django" },
+    { name = "jdatetime" },
+]
+sdist = { url = "https://pypi.devneeds.ir/packages/django-jalali-date/2.0.0/django-jalali-date-2.0.0.tar.gz", hash = "sha256:7cc9e3462386b1c89cd05731ebc2857748db78f147c4b2b99427b519e05ab178" }
+
+[[package]]
+name = "django-redis"
+version = "7.0.0"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+dependencies = [
+    { name = "django" },
+    { name = "redis" },
+]
+sdist = { url = "https://pypi.devneeds.ir/packages/django-redis/7.0.0/django_redis-7.0.0.tar.gz", hash = "sha256:e48491c862f4350b0747ceb1016700686fb93c4f4e0fb9c490fe6c6658ffd933" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/django-redis/7.0.0/django_redis-7.0.0-py3-none-any.whl", hash = "sha256:4b23aa6e0cd0937bb1242e9a463809e6004de3ca2150f34e986306bb6220d688" },
+]
+
+[[package]]
+name = "djangorestframework"
+version = "3.18.0"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://pypi.devneeds.ir/packages/djangorestframework/3.18.0/djangorestframework-3.18.0.tar.gz", hash = "sha256:2323a5111837e0b784dcb8323abc78ecc54fa2a5af7aff2677cf50cdd849477f" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/djangorestframework/3.18.0/djangorestframework-3.18.0-py3-none-any.whl", hash = "sha256:381fc44d3249c9565c5f723850855b734e99030eb30957a49f506d3fe11d7dcb" },
+]
+
+[[package]]
+name = "jalali-core"
+version = "1.0.0"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+sdist = { url = "https://pypi.devneeds.ir/packages/jalali-core/1.0.0/jalali_core-1.0.0.tar.gz", hash = "sha256:f4287c70c630323dcf0a3ab26df905ba4d451e230ac1f65b3bb2f77797894a2b" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/jalali-core/1.0.0/jalali_core-1.0.0-py3-none-any.whl", hash = "sha256:84e6f5090eadfb35234f24fad084be831d00da3c0b238ee001e8a1fd49bf7924" },
+]
+
+[[package]]
+name = "jdatetime"
+version = "6.1.0"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+dependencies = [
+    { name = "jalali-core" },
+]
+sdist = { url = "https://pypi.devneeds.ir/packages/jdatetime/6.1.0/jdatetime-6.1.0.tar.gz", hash = "sha256:e5812d7ebf4c6609a554230cc07defc89d9c113424350fe2d5b7ed7dc50d3097" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/jdatetime/6.1.0/jdatetime-6.1.0-py3-none-any.whl", hash = "sha256:68798192dd65daf6f40797a654000411446a4390ad44c331ba8c0e1d9ba8146f" },
+]
+
+[[package]]
+name = "mysqlclient"
+version = "2.2.8"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+sdist = { url = "https://pypi.devneeds.ir/packages/mysqlclient/2.2.8/mysqlclient-2.2.8.tar.gz", hash = "sha256:8ed20c5615a915da451bb308c7d0306648a4fd9a2809ba95c992690006306199" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/mysqlclient/2.2.8/mysqlclient-2.2.8-cp314-cp314-win_amd64.whl", hash = "sha256:9bed7c8d3b629bdc09e17fb628d5b3b0a5fd1f12b09432b464b9126c727bedc0" },
+    { url = "https://pypi.devneeds.ir/packages/mysqlclient/2.2.8/mysqlclient-2.2.8-cp314-cp314t-win_amd64.whl", hash = "sha256:260cce0e81446c83bf0a389e0fae38d68547d9f8fc0833bc733014e10ce28a99" },
+]
+
+[[package]]
+name = "packaging"
+version = "26.3"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+sdist = { url = "https://pypi.devneeds.ir/packages/packaging/26.3/packaging-26.3.tar.gz", hash = "sha256:94edc256424af38762eb31306eed28beb9f0efc50a8837492c9d6fd6004aed79" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/packaging/26.3/packaging-26.3-py3-none-any.whl", hash = "sha256:d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c" },
+]
+
+[[package]]
+name = "pillow"
+version = "12.3.0"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+sdist = { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0.tar.gz", hash = "sha256:3b8182a766685eaa002637e28b4ec8d6b18819a0c71f579bf0dbaa5830297cce" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314-ios_13_0_arm64_iphoneos.whl", hash = "sha256:9cf95fe4d0f84c82d282745d9bb08ad9f926efa00be4697e767b814ce40d4330" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314-ios_13_0_arm64_iphonesimulator.whl", hash = "sha256:8728f216dcdb6e6d555cf971cb34076139ad74b31fc2c14da4fafc741c5f6217" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314-ios_13_0_x86_64_iphonesimulator.whl", hash = "sha256:a45650e8ce7fafffd731db8550230db6b0d306d181a90b67d3e6bca2f1990930" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314-macosx_10_15_x86_64.whl", hash = "sha256:ba54cfebe86920a559a7c4d6b9050791c20513650a1952ebe3368c7dc70306f8" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314-macosx_11_0_arm64.whl", hash = "sha256:e158cb00350dc278f3b91551101aa7d12415a66ebf2c91d8d5ac14e56ddd3ad0" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:e9aeb04d6aef139de265b29683e119b638208f88cf73cdd1658aa07221165321" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:251bf95b67017e27b13d82f5b326234ca62d70f9cf4c2b9032de2358a3b12c7b" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314-musllinux_1_2_aarch64.whl", hash = "sha256:fe3cca2e4e8a592be0f269a1ca4835c25199d9f3ce815c8491048f785b0a0198" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314-musllinux_1_2_x86_64.whl", hash = "sha256:23aceaa007d6172b02c277f0cd359c79492bbb14f7072b4ede9fbcaf20648130" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314-win32.whl", hash = "sha256:af8d94b0db561cf68b88a267c5c44b49e134f525d0dc2cb7ed413a66bc23559a" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314-win_amd64.whl", hash = "sha256:fdafc9cce40277e0f7a0feabce0ee50dd2fa1800f3b38015e51296b5e814048d" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314-win_arm64.whl", hash = "sha256:e91206ee562682b51b98ef4b26a6ef48fd84e15fd4c4bc5ec768eb641d206838" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314t-macosx_10_15_x86_64.whl", hash = "sha256:164b31cd1a0490ab6efae01aa5df49da7061be0af1b30e035b6e9a1bfe34ee6e" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314t-macosx_11_0_arm64.whl", hash = "sha256:5afb51d599ea772b8365ae807ae557f18bccfe46ab261fd1c2a9ed700fc6eb17" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314t-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:3edce1d53195db527e0191f84b71d02022de0540bf43a16ed734ed7537b07385" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:bf16ba1b4d0b6b7c8e534936632270cf70eb00dbe09005bc345b2677b726855c" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314t-musllinux_1_2_aarch64.whl", hash = "sha256:24870b09b224f7ae3c39ed07d10e819d06f8720bc551847b1d623832b5b0e28d" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314t-musllinux_1_2_x86_64.whl", hash = "sha256:30f2aa603c41533cc25c05acd0da21636e84a315768feb631c937177db558931" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314t-win32.whl", hash = "sha256:4b0a7fe987b14c31ebda6083f74f22b561fd3739bc0ac51e019622e3d72668c7" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314t-win_amd64.whl", hash = "sha256:962864dc93511324d51ddbb5b9f8731bf71675b93ca612a07441896f4688fb8c" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp314-cp314t-win_arm64.whl", hash = "sha256:0740a512dc522224c77d9aa5a8d70d8b7d73fb91f2c21125d8d025d3b8990e45" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315-ios_13_0_arm64_iphoneos.whl", hash = "sha256:0feb2e9d6ad6c9e3c06effe9d00f3f1e618a6643273576b016f591e9315a7139" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315-ios_13_0_arm64_iphonesimulator.whl", hash = "sha256:9e881fca225083806662a5c43d627d215f258ff43c890f831966c7d7ba9c7402" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315-ios_13_0_x86_64_iphonesimulator.whl", hash = "sha256:4998562bf62a445225f22e07c896bb04b35b1b1f2eb6d760584c9c51d7a5f78c" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315-macosx_10_15_x86_64.whl", hash = "sha256:dc624f6bc473dacdf7ef7eb8678d0d08edf15cd94fad6ae5c7d6cc67a4e4902f" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315-macosx_11_0_arm64.whl", hash = "sha256:71d6097b330eea8fd15097780c8e89cb1a8ce7838669f48c5bacd6f663dd4701" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:28ce87c5ab450a9dd970b52e5aca5fe63ed432d18a2eaddd1979a00a1ba24ace" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:6b02afb9b97f65fbca5f31db6a2a3ba21aa93030225f150fa3f249717e938fb4" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315-musllinux_1_2_aarch64.whl", hash = "sha256:1182d52bc2d5e5d7d0949503aa7e36d12f42205dc287e4883f407b1988820d39" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315-musllinux_1_2_x86_64.whl", hash = "sha256:e795b7eb908249c4e43c7c99fac7c2c75dab0c43566e37db472a355f63693d71" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315-win32.whl", hash = "sha256:57b3d78c95ba9059768b10e28b813002261d3f3dfc55cc48b0c988f625175827" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315-win_amd64.whl", hash = "sha256:fa4ecea169a355be7a3ade2c783e2ed12f0e40d2c5621cda8b3297faf7fbb9f5" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315-win_arm64.whl", hash = "sha256:877c3f311ff35410f690861c4409e7ccbf0cd2f878e50628a28e5a0bb689e658" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315t-macosx_10_15_x86_64.whl", hash = "sha256:e9871b1ffbfa9656b60aeee92ed5136a5742696006fa322b29ea3d8da0ecc9cf" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315t-macosx_11_0_arm64.whl", hash = "sha256:53aa02d20d10c3d814d536aa4e5ac9b84ca0ff5a88377963b085ad6822f93e64" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315t-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:446c34dcc4324b084a53b705127dc15717b22c5e140ae0a3c38349d4efec071e" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:cf1845d02ad822a369a49f2bb9345b1614744267682e7a03527dc3bf6eea1777" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315t-musllinux_1_2_aarch64.whl", hash = "sha256:186941b6aef820ad110fb01fb06eb925374dc3a21b17e37ec9a53b250c6fe2d1" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315t-musllinux_1_2_x86_64.whl", hash = "sha256:f13c32a3abd6079a66d9526e18dad9b6d280384d49d7c54040cd57b6424041d9" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315t-win32.whl", hash = "sha256:1657923d2d45afb66526e5b933e5b3052e6bdea196c90d3abb2424e18c77dae8" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315t-win_amd64.whl", hash = "sha256:8cd2f7bdda092d99c9fc2fb7391354f306d01443d22785d0cbfafa2e2c8bb418" },
+    { url = "https://pypi.devneeds.ir/packages/pillow/12.3.0/pillow-12.3.0-cp315-cp315t-win_arm64.whl", hash = "sha256:06ff022112bc9cbf83b60f8e028d94ad87b60621706487e65f673de61610ab59" },
+]
+
+[[package]]
+name = "pillow-heif"
+version = "1.5.0"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+dependencies = [
+    { name = "pillow" },
+]
+sdist = { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0.tar.gz", hash = "sha256:16b11a37b762ff42da2d36527bb5cb14bd9194c24c389ee911155d6e23c53065" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314-macosx_10_15_x86_64.whl", hash = "sha256:8d96783ca1648ba8384e66b888128ca3a48d769c0e3593acf84c40ce0c791629" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314-macosx_11_0_arm64.whl", hash = "sha256:5c50626e77510f38cb11aacb3b4bba56eff17ce39a9d85b7ee210bd81387a083" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:4fb15135733626ee3fd4d7104bde1e54d4370f9f8b697a5d239b8b552b73fc7b" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:646ddad98c8f9c5e637dbb84b6b7db905e565994e9fd6a496a36adff36ae28b3" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314-musllinux_1_2_aarch64.whl", hash = "sha256:b9803c1291c7c598134f16016a071ec8d9dce268ab1806c8541450c4e3972893" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314-musllinux_1_2_x86_64.whl", hash = "sha256:1ad925299422d4592e4b5344c03e25b27dc7a5130447603a89404d7d138b746c" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314-win_amd64.whl", hash = "sha256:cfd5f8a8a7b65f2ded217c5bde4dd9365b6b67187657a121b05224841a1b92c0" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314-win_arm64.whl", hash = "sha256:6759febf63ea31fd00756e4a828cd643d0b9f98c93f5814b0ce5baa036da50e4" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314t-macosx_10_15_x86_64.whl", hash = "sha256:e2c3f47eac33d8368ea5779eb7bd8c736e7048b5897474d7e1799c073c9505e3" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314t-macosx_11_0_arm64.whl", hash = "sha256:d0881c82752d676fbe054cb0258100790ead94946fbb075ffa041bb9ae579b11" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314t-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:d5810606f70d3432b55987a5e44aa26fb7598fea565d8645b017f7ed935f5e99" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:e737d326410e733868566c045f651b5371086a4ec294c40d39e129481d024bef" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314t-musllinux_1_2_aarch64.whl", hash = "sha256:522719e5dd56eae6f9f48828c08eefe0e5c02dd92f5a07780e6f3c04bdbcf880" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314t-musllinux_1_2_x86_64.whl", hash = "sha256:f1d281b2efee954ef78c0a473a41498d0548a32290d7250b4879ddd2480dffb8" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314t-win_amd64.whl", hash = "sha256:65b3d619cea2d1f758cd039cddb331cb44d63768c355606ea9100cfee4421eb4" },
+    { url = "https://pypi.devneeds.ir/packages/pillow-heif/1.5.0/pillow_heif-1.5.0-cp314-cp314t-win_arm64.whl", hash = "sha256:508fc9dd8fb4df933b666c30b60b0930270d9e072fcd90b75990166050e44656" },
+]
+
+[[package]]
+name = "redis"
+version = "8.1.0"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+sdist = { url = "https://pypi.devneeds.ir/packages/redis/8.1.0/redis-8.1.0.tar.gz", hash = "sha256:6e1a19beef9225c83efd689c7e6b7da2d5215b1f42cd13b7fc3714d0a09c7b25" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/redis/8.1.0/redis-8.1.0-py3-none-any.whl", hash = "sha256:a4fe1aac3d3b3cc791d4b3d5931c5a956045dc951ee74d1c913ee3ac4d2ee9fb" },
+]
+
+[[package]]
+name = "setuptools"
+version = "84.0.0"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+sdist = { url = "https://pypi.devneeds.ir/packages/setuptools/84.0.0/setuptools-84.0.0.tar.gz", hash = "sha256:f4695c21257f0d9b537ec2692c941d02ee143b7cc1276941349a546573b2ef73" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/setuptools/84.0.0/setuptools-84.0.0-py3-none-any.whl", hash = "sha256:51a52592b3b99e102b609654876bd65f19f999935166d1352678931132b0c670" },
+]
+
+[[package]]
+name = "sqlparse"
+version = "0.5.5"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+sdist = { url = "https://pypi.devneeds.ir/packages/sqlparse/0.5.5/sqlparse-0.5.5.tar.gz", hash = "sha256:e20d4a9b0b8585fdf63b10d30066c7c94c5d7a7ec47c889a2d83a3caa93ff28e" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/sqlparse/0.5.5/sqlparse-0.5.5-py3-none-any.whl", hash = "sha256:12a08b3bf3eec877c519589833aed092e2444e68240a3577e8e26148acc7b1ba" },
+]
+
+[[package]]
+name = "testfon"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "django" },
+    { name = "django-ckeditor-5" },
+    { name = "django-debug-toolbar" },
+    { name = "django-filter" },
+    { name = "django-jalali-date" },
+    { name = "django-redis" },
+    { name = "djangorestframework" },
+    { name = "mysqlclient" },
+    { name = "packaging" },
+    { name = "pillow" },
+    { name = "pillow-heif" },
+    { name = "setuptools" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "django", specifier = ">=6.0.6,<6.1" },
+    { name = "django-ckeditor-5", specifier = ">=0.2.20" },
+    { name = "django-debug-toolbar", specifier = ">=4.0" },
+    { name = "django-filter", specifier = ">=25.2" },
+    { name = "django-jalali-date", specifier = ">=2.0.0" },
+    { name = "django-redis", specifier = ">=7.0.0" },
+    { name = "djangorestframework", specifier = ">=3.17.1" },
+    { name = "mysqlclient", specifier = ">=2.2.8" },
+    { name = "packaging", specifier = ">=26.2" },
+    { name = "pillow", specifier = ">=12.2.0" },
+    { name = "pillow-heif", specifier = ">=1.4.0" },
+    { name = "setuptools", specifier = ">=82.0.1" },
+]
+
+[[package]]
+name = "tzdata"
+version = "2026.3"
+source = { registry = "https://pypi.devneeds.ir/simple/" }
+sdist = { url = "https://pypi.devneeds.ir/packages/tzdata/2026.3/tzdata-2026.3.tar.gz", hash = "sha256:4a1518b8993086a7982523e071643f3c0e5f213e75b21318e78bcabfff9d1415" }
+wheels = [
+    { url = "https://pypi.devneeds.ir/packages/tzdata/2026.3/tzdata-2026.3-py2.py3-none-any.whl", hash = "sha256:dc096730c87af6cab1b171c9d532be840741ff5d459015e7f6947bd7d7e54931" },
+]

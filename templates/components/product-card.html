@@ -2,8 +2,9 @@
 <article
         class="group rounded-[1.75rem] border border-dara-border bg-white p-3 transition duration-300 hover:-translate-y-1 hover:shadow-lg">
     <div class="relative overflow-hidden rounded-[1.35rem] bg-dara-bg"><a
-            href="{% if product.slug %}/products/{{ product.slug }}/{% else %}#{% endif %}"
-            aria-label="مشاهده {{ product.name }}"><img src="{% if product.image %}{{ product.image|image_variant:'card' }}{% else %}/static/img/favicon.svg{% endif %}"
+            href="{% if product.slug %}/products/{{ product.slug }}/{% else %}{% url 'shop:product-detail' product.slug %}{% endif %}"
+            aria-label="مشاهده {{ product.name }}"><img src="
+            {% if product.image %}{{ product.image|image_variant:'card' }}{% else %}/static/img/favicon.svg{% endif %}"
                                                         width="600" height="600"
                                                         alt="{{ product.name|default:'محصول Dara Home' }}"
                                                         class="aspect-square h-full w-full object-cover transition duration-500 group-hover:scale-105"
